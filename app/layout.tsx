@@ -35,6 +35,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://prod.spline.design" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://unpkg.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.spline.design" crossOrigin="anonymous" />
+        <link
+          rel="preload"
+          as="fetch"
+          href="https://prod.spline.design/UbM7F-HZcyTbZ4y3/scene.splinecode"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={`font-sans antialiased ${GeistSans.variable} ${GeistMono.variable}`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

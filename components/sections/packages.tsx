@@ -179,7 +179,7 @@ function PackageCard({ pkg, index }: { pkg: BusinessPackage; index: number }) {
 export function Packages() {
   return (
     <section id="packages" className="relative overflow-hidden bg-black py-28">
-      <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(34,211,238,0.1),transparent_65%)]" />
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-[37.5rem] w-[56.25rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(34,211,238,0.1),transparent_65%)]" />
       <div className="container relative mx-auto px-4">
         <SectionHeading
           eyebrow="Packages"

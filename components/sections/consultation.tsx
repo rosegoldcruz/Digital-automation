@@ -373,7 +373,7 @@ export function Consultation() {
 
   return (
     <section id="consultation" className="relative overflow-hidden bg-black py-28">
-      <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(99,102,241,0.12),transparent_65%)]" />
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-[31.25rem] w-[56.25rem] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(99,102,241,0.12),transparent_65%)]" />
       <div className="container relative mx-auto px-4">
         <SectionHeading
           eyebrow="Book a consultation"

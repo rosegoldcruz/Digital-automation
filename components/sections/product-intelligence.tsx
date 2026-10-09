@@ -139,7 +139,7 @@ function ProductCard({ product, status, selected, onSelect, disabled }: CardProp
           <p className="truncate text-sm font-medium text-white">{product.name}</p>
           <p className="text-xs text-neutral-500">{product.category}</p>
         </div>
-        <span className={cn("shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-medium", style.chip)}>{style.label}</span>
+        <span className={cn("shrink-0 rounded-full border px-2 py-0.5 text-[0.625rem] font-medium", style.chip)}>{style.label}</span>
       </div>
       <div className="mt-3 flex items-end gap-3">
         <div className="w-24 shrink-0">
@@ -265,7 +265,7 @@ export function ProductIntelligence() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <span className={cn("mt-1 block text-[11px] sm:text-sm", current ? "font-medium text-white" : "text-neutral-500")}>
+                  <span className={cn("mt-1 block text-[0.6875rem] sm:text-sm", current ? "font-medium text-white" : "text-neutral-500")}>
                     {label}
                   </span>
                 </li>
@@ -275,7 +275,7 @@ export function ProductIntelligence() {
           </ol>
 
           <LayoutGroup>
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18.75rem]">
               <div className="space-y-6">
                 <div>
                   <h3 className="mb-3 text-xs uppercase tracking-widest text-neutral-400">Live catalog</h3>

@@ -173,7 +173,7 @@ export function BusinessModels() {
           description="Choose a model to watch its order flow. We specialize in FBM."
         />
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)]">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,21.25rem)_minmax(0,1fr)]">
           <div role="tablist" aria-label="Business models" aria-orientation="vertical" onKeyDown={onKeyDown} className="flex flex-col gap-3">
             {models.map((m, i) => {
               const selected = i === index
@@ -208,7 +208,7 @@ export function BusinessModels() {
                   <span className="flex items-center justify-between gap-3">
                     <span className={cn("font-semibold text-white", flagship ? "text-3xl" : "text-xl")}>{m.name}</span>
                     <span
-                      className="rounded-full border px-2.5 py-0.5 text-[11px] font-medium"
+                      className="rounded-full border px-2.5 py-0.5 text-[0.6875rem] font-medium"
                       style={{ borderColor: `${m.color}66`, color: m.color, background: `${m.color}14` }}
                     >
                       {m.tag}
@@ -238,7 +238,7 @@ export function BusinessModels() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: model.id === "fbm" ? 0.35 : 0.16, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+              className="pointer-events-none absolute left-1/2 top-1/3 h-[26.25rem] w-[26.25rem] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
               style={{ background: `radial-gradient(circle, ${model.color}, transparent 65%)` }}
             />
             <div className="relative">

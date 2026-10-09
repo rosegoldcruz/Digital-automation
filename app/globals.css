@@ -124,6 +124,26 @@
   }
 }
 
+/*
+ * Desktop scale: at a normal 100% browser zoom the site renders the way it would at 80% zoom.
+ * Every rem value shrinks with the root font size, and the lg/xl/2xl breakpoints (also used by
+ * the container) are scaled by the same 0.8 so layouts switch exactly where 80% zoom would.
+ * Phones and small tablets are left at full size.
+ */
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 819.2px;
+  --breakpoint-xl: 1024px;
+  --breakpoint-2xl: 1228.8px;
+}
+
+@media (min-width: 819.2px) {
+  html {
+    font-size: 80%;
+  }
+}
+
 @property --da-angle {
   syntax: '<angle>';
   inherits: false;
@@ -203,6 +223,35 @@ footer[id] {
   animation: da-pan 7s ease-in-out infinite alternate;
 }
 
+/* Run from first paint, so server-rendered hero text never waits on JavaScript. */
+@keyframes da-rise {
+  from {
+    transform: translate3d(0, 115%, 0) rotate(3deg);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes da-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.da-rise {
+  animation: da-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.da-fade-up {
+  animation: da-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @keyframes da-pan {
   from {
     background-position: 0% 50%;
@@ -220,6 +269,8 @@ footer[id] {
   .da-drift,
   .da-pulse-ring,
   .da-pan,
+  .da-rise,
+  .da-fade-up,
   .da-border-spin {
     animation: none !important;
   }

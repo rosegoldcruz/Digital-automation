@@ -26,8 +26,8 @@ const item: Variants = {
 export function ProblemSolution() {
   return (
     <section className="relative overflow-hidden bg-black py-28">
-      <div aria-hidden className="pointer-events-none absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(244,63,94,0.08),transparent_65%)]" />
-      <div aria-hidden className="pointer-events-none absolute right-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.1),transparent_65%)]" />
+      <div aria-hidden className="pointer-events-none absolute left-0 top-1/2 h-[31.25rem] w-[31.25rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(244,63,94,0.08),transparent_65%)]" />
+      <div aria-hidden className="pointer-events-none absolute right-0 top-1/2 h-[31.25rem] w-[31.25rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.1),transparent_65%)]" />
       <div className="container relative mx-auto grid gap-8 px-4 lg:grid-cols-2">
         <motion.div
           initial="hidden"

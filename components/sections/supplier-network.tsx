@@ -282,8 +282,8 @@ export function SupplierNetwork() {
             </div>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_260px]">
-            <div ref={containerRef} className="relative mx-auto w-full max-w-[1000px]" style={{ aspectRatio: `${layout.w} / ${layout.h}` }}>
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_16.25rem]">
+            <div ref={containerRef} className="relative mx-auto w-full max-w-[62.5rem]" style={{ aspectRatio: `${layout.w} / ${layout.h}` }}>
               <svg
                 key={isWide ? "wide" : "tall"}
                 viewBox={`0 0 ${layout.w} ${layout.h}`}
@@ -366,7 +366,7 @@ export function SupplierNetwork() {
             </div>
 
             <aside aria-label="Node details" className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-              <p className="font-mono text-[11px] uppercase tracking-widest text-cyan-300">
+              <p className="font-mono text-[0.6875rem] uppercase tracking-widest text-cyan-300">
                 {hover ? "Inspecting" : "Current stage"}
               </p>
               <h3 className="mt-2 text-lg font-semibold text-white">{detail.label}</h3>
@@ -388,7 +388,7 @@ export function SupplierNetwork() {
                       <dd className="text-right text-neutral-200">{v}</dd>
                     </div>
                   ))}
-                  <p className="pt-1 text-[11px] text-amber-200/80">Sample values for illustration.</p>
+                  <p className="pt-1 text-[0.6875rem] text-amber-200/80">Sample values for illustration.</p>
                 </dl>
               )}
             </aside>

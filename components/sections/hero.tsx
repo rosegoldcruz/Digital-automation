@@ -5,6 +5,7 @@ import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useScroll,
 import { ArrowRight, CheckCircle } from "lucide-react"
 import { SplineScene } from "@/components/ui/spline-scene"
 import { Magnetic } from "@/components/motion/magnetic"
+import { DirectionalLink } from "@/components/motion/directional-link"
 
 const HEADLINE = ["Your Amazon Business.", "Built Smarter.", "Powered by Automation."]
 
@@ -26,31 +27,6 @@ const PARTICLES = Array.from({ length: 26 }, (_, i) => {
   }
 })
 
-function DirectionalLink({ href, children }: { href: string; children: React.ReactNode }) {
-  const fillRef = useRef<HTMLSpanElement>(null)
-
-  const setOrigin = (e: React.PointerEvent<HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    if (fillRef.current) fillRef.current.style.transformOrigin = e.clientX - rect.left < rect.width / 2 ? "left" : "right"
-  }
-
-  return (
-    <a
-      href={href}
-      onPointerEnter={setOrigin}
-      onPointerLeave={setOrigin}
-      className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full border border-white/20 px-7 text-sm font-medium text-neutral-200 transition-colors duration-300 hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-    >
-      <span
-        ref={fillRef}
-        aria-hidden
-        className="absolute inset-0 origin-left scale-x-0 bg-white transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-      />
-      <span className="relative">{children}</span>
-    </a>
-  )
-}
-
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const reduce = useReducedMotion()
@@ -63,7 +39,6 @@ export function Hero() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] })
   const gridY = useTransform(scrollYProgress, [0, 1], [0, 140])
   const robotY = useTransform(scrollYProgress, [0, 1], [0, -90])
-  const robotScale = useTransform(scrollYProgress, [0, 1], [1, 0.9])
   const textY = useTransform(scrollYProgress, [0, 1], [0, -50])
   const textOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.15])
 
@@ -99,7 +74,7 @@ export function Hero() {
       <motion.div
         aria-hidden
         style={{ y: gridY, x: gridX }}
-        className="pointer-events-none absolute -inset-x-10 -top-10 bottom-0 -z-10 opacity-40 [background-image:linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_at_60%_40%,black,transparent_70%)]"
+        className="pointer-events-none absolute -inset-x-10 -top-10 bottom-0 -z-10 opacity-40 [background-image:linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:4rem_4rem] [mask-image:radial-gradient(ellipse_at_60%_40%,black,transparent_70%)]"
       />
       {/* Depth layer 2: cursor-responsive lighting */}
       <motion.div aria-hidden style={{ background: glow }} className="pointer-events-none absolute inset-0 -z-10" />
@@ -127,51 +102,43 @@ export function Hero() {
 
       <div className="container mx-auto grid min-h-screen items-center gap-4 px-4 pb-16 pt-28 lg:grid-cols-[1.05fr_1fr] lg:gap-8">
         <motion.div style={{ y: textY, opacity: textOpacity }} className="relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/5 px-3 py-1 text-xs tracking-wide text-cyan-200"
+          <div
+            style={{ animationDelay: "0s" }}
+            className="da-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/5 px-3 py-1 text-xs tracking-wide text-cyan-200"
           >
             <span className="relative flex h-2 w-2">
               <span className="da-pulse-ring absolute inline-flex h-full w-full rounded-full bg-cyan-300" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-300" />
             </span>
             Digital Automation LLC
-          </motion.div>
+          </div>
 
           <h1 className="text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl xl:text-7xl">
             {HEADLINE.map((line, i) => (
               <span key={line} className="-mb-[0.12em] block overflow-hidden pb-[0.12em]">
-                <motion.span
-                  initial={{ y: "115%", rotate: 3 }}
-                  animate={{ y: 0, rotate: 0 }}
-                  transition={{ duration: 0.9, delay: 0.15 + i * 0.14, ease: [0.22, 1, 0.36, 1] }}
-                  className={`block origin-left ${
+                <span
+                  style={{ animationDelay: `${0.05 + i * 0.12}s` }}
+                  className={`da-rise block origin-left ${
                     i === 2 ? "da-pan bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-400 bg-clip-text text-transparent" : ""
                   }`}
                 >
                   {line}
-                </motion.span>
+                </span>
               </span>
             ))}
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-neutral-300 sm:text-lg"
+          <p
+            style={{ animationDelay: "0.45s" }}
+            className="da-fade-up mt-6 max-w-xl text-base leading-relaxed text-neutral-300 sm:text-lg"
           >
             Build your Amazon e-commerce business with professional storefront development, qualified dropshipping suppliers,
             intelligent product management, and streamlined fulfillment systems.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.85 }}
-            className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
+          <div
+            style={{ animationDelay: "0.6s" }}
+            className="da-fade-up mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
           >
             <Magnetic strength={0.28}>
               <a
@@ -189,13 +156,11 @@ export function Hero() {
             <Magnetic strength={0.2}>
               <DirectionalLink href="#how-it-works">Explore How It Works</DirectionalLink>
             </Magnetic>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
-            className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-2 text-sm text-neutral-400"
+          <div
+            style={{ animationDelay: "0.8s" }}
+            className="da-fade-up mt-8 flex flex-wrap items-center gap-x-8 gap-y-2 text-sm text-neutral-400"
           >
             <span className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-emerald-400" />
@@ -205,17 +170,17 @@ export function Hero() {
               <CheckCircle className="h-4 w-4 text-emerald-400" />
               Clear package scope
             </span>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* The robot: untouched Spline scene. Everything layered over it is pointer-events-none so its own cursor tracking keeps working. */}
-        <div className="relative h-[420px] sm:h-[500px] lg:h-[560px]">
+        <div className="relative h-[26.25rem] sm:h-[31.25rem] lg:h-[35rem]">
           <motion.div
             aria-hidden
             style={{ x: haloX, y: haloY }}
-            className="pointer-events-none absolute inset-6 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.22),rgba(99,102,241,0.1)_45%,transparent_70%)] blur-2xl"
+            className="pointer-events-none absolute inset-6 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.22),rgba(99,102,241,0.1)_45%,transparent_70%)]"
           />
-          <motion.div style={{ x: robotX, y: robotY, scale: robotScale }} className="absolute inset-0">
+          <motion.div style={{ x: robotX, y: robotY }} className="absolute inset-0">
             <div className="da-float h-full w-full">
               <SplineScene
                 scene="https://prod.spline.design/UbM7F-HZcyTbZ4y3/scene.splinecode"

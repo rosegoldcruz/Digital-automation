@@ -21,8 +21,8 @@ export function NodeBadge({ icon: Icon, label, sublabel, color, state, size = 56
       <span
         className="relative flex items-center justify-center rounded-full border bg-neutral-950 transition-[box-shadow,border-color,transform] duration-300"
         style={{
-          width: size,
-          height: size,
+          width: `${size / 16}rem`,
+          height: `${size / 16}rem`,
           borderColor: lit ? color : "rgba(255,255,255,0.14)",
           boxShadow: state === "active" ? `0 0 28px -2px ${color}` : lit ? `0 0 12px -4px ${color}` : "none",
           transform: state === "active" ? "scale(1.12)" : "scale(1)",
@@ -33,14 +33,14 @@ export function NodeBadge({ icon: Icon, label, sublabel, color, state, size = 56
         )}
         <Icon
           className="transition-colors duration-300"
-          style={{ color: lit ? color : "rgba(255,255,255,0.5)", width: size * 0.42, height: size * 0.42 }}
+          style={{ color: lit ? color : "rgba(255,255,255,0.5)", width: `${(size * 0.42) / 16}rem`, height: `${(size * 0.42) / 16}rem` }}
         />
       </span>
       <span className="flex max-w-[8.5rem] flex-col items-center rounded-md bg-black/70 px-1.5 text-center backdrop-blur-sm">
         <span className={cn("text-xs font-medium leading-tight sm:text-sm", lit ? "text-white" : "text-neutral-400")}>
           {label}
         </span>
-        {sublabel && <span className="mt-0.5 text-[10px] leading-tight text-neutral-500">{sublabel}</span>}
+        {sublabel && <span className="mt-0.5 text-[0.625rem] leading-tight text-neutral-500">{sublabel}</span>}
       </span>
     </span>
   )
