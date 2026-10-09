@@ -18,10 +18,10 @@ const PARTICLES = Array.from({ length: 26 }, (_, i) => {
     left: `${Math.round(r(1) * 100)}%`,
     top: `${Math.round(30 + r(2) * 70)}%`,
     size: 1 + Math.round(r(3) * 2),
-    dur: 10 + r(4) * 10,
-    delay: -r(5) * 14,
+    dur: Math.round((10 + r(4) * 10) * 10) / 10,
+    delay: -Math.round(r(5) * 14 * 10) / 10,
     dx: Math.round((r(6) - 0.5) * 80),
-    o: 0.25 + r(7) * 0.5,
+    o: Math.round((0.25 + r(7) * 0.5) * 100) / 100,
     mobile: i < 12,
   }
 })
@@ -148,7 +148,7 @@ export function Hero() {
                   animate={{ y: 0, rotate: 0 }}
                   transition={{ duration: 0.9, delay: 0.15 + i * 0.14, ease: [0.22, 1, 0.36, 1] }}
                   className={`block origin-left ${
-                    i === 2 ? "bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-400 bg-clip-text text-transparent" : ""
+                    i === 2 ? "da-pan bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-400 bg-clip-text text-transparent" : ""
                   }`}
                 >
                   {line}
@@ -209,7 +209,7 @@ export function Hero() {
         </motion.div>
 
         {/* The robot: untouched Spline scene. Everything layered over it is pointer-events-none so its own cursor tracking keeps working. */}
-        <div className="relative h-[420px] sm:h-[520px] lg:h-[680px]">
+        <div className="relative h-[420px] sm:h-[500px] lg:h-[560px]">
           <motion.div
             aria-hidden
             style={{ x: haloX, y: haloY }}

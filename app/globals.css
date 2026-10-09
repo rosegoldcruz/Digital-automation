@@ -198,6 +198,20 @@ footer[id] {
   animation: da-spin 5s linear infinite;
 }
 
+.da-pan {
+  background-size: 220% 100%;
+  animation: da-pan 7s ease-in-out infinite alternate;
+}
+
+@keyframes da-pan {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -205,6 +219,7 @@ footer[id] {
   .da-float,
   .da-drift,
   .da-pulse-ring,
+  .da-pan,
   .da-border-spin {
     animation: none !important;
   }

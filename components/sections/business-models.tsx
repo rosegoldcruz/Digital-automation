@@ -10,10 +10,8 @@ import {
   Pause,
   Play,
   ShoppingCart,
-  Truck,
   Warehouse,
   PackageCheck,
-  type LucideIcon,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { FlowDiagram, type FlowLayout, type FlowStep } from "./flow-diagram"
@@ -29,7 +27,6 @@ interface Model {
   steps: FlowStep[]
   wide: FlowLayout
   tall: FlowLayout
-  icon: LucideIcon
 }
 
 const FBA_RECT = (x: number, y: number, w: number, h: number) => (
@@ -45,7 +42,6 @@ const models: Model[] = [
       "Fulfilled by Merchant. Orders from your Amazon store are routed to a supplier, who ships directly to the customer. This is the model we build and automate.",
     color: "#22d3ee",
     variant: "orb",
-    icon: Truck,
     steps: [
       { label: "Customer Order", caption: "A customer places an order for a product in your Amazon store.", icon: ShoppingCart, at: 0 },
       { label: "Supplier", caption: "The order is routed to a supplier that holds the inventory.", icon: Warehouse, at: 0.5 },
@@ -80,7 +76,6 @@ const models: Model[] = [
       "Fulfilled by Amazon. You purchase inventory in advance and send it to Amazon, which stores, packs, and ships orders to customers.",
     color: "#fbbf24",
     variant: "batch",
-    icon: Boxes,
     steps: [
       { label: "Purchased Inventory", caption: "You purchase inventory in advance and send it to Amazon.", icon: Boxes, at: 0 },
       { label: "Amazon Fulfillment Center", caption: "Amazon stores the inventory and handles picking and packing.", icon: Warehouse, at: 0.5 },
@@ -117,7 +112,6 @@ const models: Model[] = [
       "You develop your own brand and product, have it manufactured, and fulfill it to customers under your name.",
     color: "#a78bfa",
     variant: "morph",
-    icon: Lightbulb,
     steps: [
       { label: "Brand Development", caption: "You create the brand, product concept, and listing identity.", icon: Lightbulb, at: 0 },
       { label: "Manufacturing", caption: "A manufacturer produces your branded product.", icon: Factory, at: 1 / 3 },

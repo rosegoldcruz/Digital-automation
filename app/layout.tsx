@@ -5,8 +5,9 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Digital Automation LLC | Amazon Business Buildouts',
+  description:
+    'Professional Amazon storefront development, qualified dropshipping suppliers, intelligent product management, and streamlined fulfillment systems.',
   generator: 'v0.app',
   icons: {
     icon: [

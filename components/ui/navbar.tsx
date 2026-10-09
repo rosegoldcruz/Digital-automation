@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
+import { motion, useScroll, useSpring } from "framer-motion"
 
 const AnimatedNavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   const defaultTextColor = "text-gray-300"
@@ -9,7 +10,7 @@ const AnimatedNavLink = ({ href, children }: { href: string; children: React.Rea
   const textSizeClass = "text-sm"
 
   return (
-    <a href={href} className={`group relative inline-block overflow-hidden h-5 flex items-center ${textSizeClass}`}>
+    <a href={href} className={`group relative inline-block overflow-hidden h-5 flex items-center whitespace-nowrap ${textSizeClass}`}>
       <div className="flex flex-col transition-transform duration-400 ease-out transform group-hover:-translate-y-1/2">
         <span className={defaultTextColor}>{children}</span>
         <span className={hoverTextColor}>{children}</span>
@@ -22,6 +23,8 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [headerShapeClass, setHeaderShapeClass] = useState("rounded-full")
   const shapeTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 })
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -59,14 +62,20 @@ export function Navbar() {
   )
 
   const navLinksData = [
-    { label: "Services", href: "#services" },
-    { label: "Case Studies", href: "#testimonials" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Network", href: "/#supplier-network" },
+    { label: "Intelligence", href: "/#product-intelligence" },
+    { label: "Packages", href: "/#packages" },
   ]
 
   const loginButtonElement = (
-    <button className="px-4 py-2 sm:px-3 text-xs sm:text-sm border border-[#333] bg-[rgba(31,31,31,0.62)] text-gray-300 rounded-full hover:border-white/50 hover:text-white transition-colors duration-200 w-full sm:w-auto">
-      Call Us
-    </button>
+    <a
+      href="/#how-it-works"
+      onClick={() => setIsOpen(false)}
+      className="px-4 py-2 sm:px-3 text-center whitespace-nowrap text-xs sm:text-sm border border-[#333] bg-[rgba(31,31,31,0.62)] text-gray-300 rounded-full hover:border-white/50 hover:text-white transition-colors duration-200 w-full sm:w-auto"
+    >
+      Explore
+    </a>
   )
 
   const signupButtonElement = (
@@ -79,20 +88,30 @@ export function Navbar() {
                      transition-all duration-300 ease-out
                      group-hover:opacity-60 group-hover:blur-xl group-hover:-m-3"
       ></div>
-      <button className="relative z-10 px-4 py-2 sm:px-3 text-xs sm:text-sm font-semibold text-white bg-gradient-to-br from-blue-400 to-blue-600 rounded-full hover:from-blue-500 hover:to-blue-700 transition-all duration-200 w-full sm:w-auto">
-        Get Quote
-      </button>
+      <a
+        href="/#consultation"
+        onClick={() => setIsOpen(false)}
+        className="relative z-10 block text-center whitespace-nowrap px-4 py-2 sm:px-3 text-xs sm:text-sm font-semibold text-white bg-gradient-to-br from-blue-400 to-blue-600 rounded-full hover:from-blue-500 hover:to-blue-700 transition-all duration-200 w-full sm:w-auto"
+      >
+        Book Consultation
+      </a>
     </div>
   )
 
   return (
+    <>
+    <motion.div
+      aria-hidden
+      style={{ scaleX }}
+      className="fixed inset-x-0 top-0 z-30 h-0.5 origin-left bg-gradient-to-r from-cyan-300 to-violet-400"
+    />
     <header
       className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-20
                        flex flex-col items-center
                        pl-6 pr-6 py-3 backdrop-blur-sm
                        ${headerShapeClass}
                        border border-[#333] bg-[#1f1f1f57]
-                       w-[calc(100%-2rem)] sm:w-auto
+                       w-[calc(100%-2rem)] sm:w-max sm:max-w-[calc(100%-2rem)]
                        transition-[border-radius] duration-0 ease-in-out`}
     >
       <div className="flex items-center justify-between w-full gap-x-6 sm:gap-x-8">
@@ -154,6 +173,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              onClick={() => setIsOpen(false)}
               className="text-gray-300 hover:text-white transition-colors w-full text-center"
             >
               {link.label}
@@ -166,5 +186,6 @@ export function Navbar() {
         </div>
       </div>
     </header>
+    </>
   )
 }
